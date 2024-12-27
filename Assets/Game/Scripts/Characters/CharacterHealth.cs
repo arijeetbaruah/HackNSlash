@@ -2,14 +2,15 @@ using System;
 using Baruah.HackNSlash.Characters.Stats;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Baruah.HackNSlash
 {
     [RequireComponent(typeof(CharacterStats))]
     public class CharacterHealth : MonoBehaviour
     {
-        public static Action<CharacterHealth, int> OnDamage;
-        public static Action<CharacterHealth> OnDeath;
+        public UnityEvent<CharacterHealth, int> OnDamage;
+        public UnityEvent<CharacterHealth> OnDeath;
         
         [ShowInInspector] public int TotalHealth => CalculateHealth();
         [ShowInInspector] public int CurrentHealth => currentHealth;
@@ -53,11 +54,14 @@ namespace Baruah.HackNSlash
         private void TakeDamage(int damage)
         {
             currentHealth = Mathf.Max(currentHealth - damage, 0);
-            OnDamage?.Invoke(this, damage);
 
-            if (damage == 0)
+            if (currentHealth == 0)
             {
                 OnDeath?.Invoke(this);
+            }
+            else
+            {
+                OnDamage?.Invoke(this, damage);
             }
         }
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Slash Attack
   description: 
   icon: {fileID: 0}
-  cooldownTime: 5
+  cooldownTime: 2
   activateTime: 0
   skillType: 0
   baseDamage: 100

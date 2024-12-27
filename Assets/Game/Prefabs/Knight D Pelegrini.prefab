@@ -1156,7 +1156,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3142686152260941186}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 0b01edc4310fb1944bdf01582d263fe6, type: 3}
   m_Controller: {fileID: 9100000, guid: ec381be2210e9dd49ab262519a3e2d93, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1201,7 +1201,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ead7fbdbe088a749948a0d7d317a1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 0
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -602257338521332307}
+        m_TargetAssemblyTypeName: Baruah.HackNSlash.CharacterAnimation, Baruah.HackNSlash
+        m_MethodName: HitAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -602257338521332307}
+        m_TargetAssemblyTypeName: Baruah.HackNSlash.CharacterAnimation, Baruah.HackNSlash
+        m_MethodName: DeadAnimation
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  baseHealth: 200
 --- !u!114 &5176729007707867982
 MonoBehaviour:
   m_ObjectHideFlags: 0
