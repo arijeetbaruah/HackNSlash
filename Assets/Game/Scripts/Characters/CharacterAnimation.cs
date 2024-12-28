@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Baruah.HackNSlash
@@ -9,12 +8,18 @@ namespace Baruah.HackNSlash
         public readonly int MeleeSingle = Animator.StringToHash("MeleeSingle");
         public readonly int Hit = Animator.StringToHash("Hit");
         public readonly int Death = Animator.StringToHash("Death");
+        public readonly int SpeedParam = Animator.StringToHash("speed");
         
         public Animator animator { get; private set; }
         
         private void Start()
         {
             animator = GetComponent<Animator>();
+        }
+
+        public void SetMovementSpeed(float speed)
+        {
+            animator.SetFloat(SpeedParam, speed);
         }
 
         public void PlayMeleeAnimation()

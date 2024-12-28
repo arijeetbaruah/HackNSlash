@@ -52,6 +52,15 @@ namespace Baruah.HackNSlash.Input
                     ""type"": ""PassThrough"",
                     ""id"": ""34f7738f-9b4f-49b8-8319-631556f5e565"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""DeltaTimeScale"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""a8a6f67b-c12f-4f4b-8771-895f043ce610"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -167,6 +176,28 @@ namespace Baruah.HackNSlash.Input
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a06ce12-43e5-46d4-a752-4811e609d1e2"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";PC"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""252b8c9a-0194-4897-9722-30d79153fb86"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -200,6 +231,7 @@ namespace Baruah.HackNSlash.Input
             m_Player_PrimaryAttack = m_Player.FindAction("Primary Attack", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+            m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         }
 
         ~@InputControls()
@@ -269,6 +301,7 @@ namespace Baruah.HackNSlash.Input
         private readonly InputAction m_Player_PrimaryAttack;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
+        private readonly InputAction m_Player_Sprint;
         public struct PlayerActions
         {
             private @InputControls m_Wrapper;
@@ -276,6 +309,7 @@ namespace Baruah.HackNSlash.Input
             public InputAction @PrimaryAttack => m_Wrapper.m_Player_PrimaryAttack;
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
+            public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -294,6 +328,9 @@ namespace Baruah.HackNSlash.Input
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -307,6 +344,9 @@ namespace Baruah.HackNSlash.Input
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
+                @Sprint.started -= instance.OnSprint;
+                @Sprint.performed -= instance.OnSprint;
+                @Sprint.canceled -= instance.OnSprint;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -338,6 +378,7 @@ namespace Baruah.HackNSlash.Input
             void OnPrimaryAttack(InputAction.CallbackContext context);
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
         }
     }
 }
