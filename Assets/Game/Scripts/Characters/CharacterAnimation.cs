@@ -9,12 +9,18 @@ namespace Baruah.HackNSlash
         public readonly int Hit = Animator.StringToHash("Hit");
         public readonly int Death = Animator.StringToHash("Death");
         public readonly int SpeedParam = Animator.StringToHash("speed");
+        public readonly int Spell = Animator.StringToHash("Spell");
         
         public Animator animator { get; private set; }
         
         private void Start()
         {
             animator = GetComponent<Animator>();
+        }
+
+        public void CastSpell()
+        {
+            animator.Play(Spell);
         }
 
         public void SetMovementSpeed(float speed)

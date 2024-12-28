@@ -10,7 +10,7 @@ namespace Baruah.HackNSlash.Characters
         public CharacterAbilitySystem user;
         public UnityEvent<GameObject, string> OnHit;
 
-        private void Start()
+        protected void Start()
         {
             if (user == null)
             {
@@ -18,7 +18,7 @@ namespace Baruah.HackNSlash.Characters
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected void OnTriggerEnter(Collider other)
         {
             if (user.transform != other.transform)
             {

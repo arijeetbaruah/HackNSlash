@@ -25,6 +25,8 @@ namespace Baruah.HackNSlash.AbilitySystem
 
         public Action<CharacterAbilitySystem, CharacterAbilitySystem> waitForHit = delegate { };
         
+        public Transform rangedAbilitySpawnPoint;
+        
         private void Start()
         {
             TryGetComponent(out characterHealth);
